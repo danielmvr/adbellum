@@ -1,43 +1,45 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ad Bellum</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <h1>Ad Bellum</h1>
-    
-    <div id="entradas">        
+    <div id="container">
+      <div id="entradas">
         <div id="my">
-            Seu HP: <input type="number" id="hp1">
-            Sua CA: <input type="number" id="ca1">
-            <label>Sua Arma:</label>
+          Seu HP: <input type="number" id="hp1" /> Sua CA:
+          <input type="number" id="ca1" />
+          <label>Sua Arma:</label>
         </div>
         <div id="enemy">
-            HP Inimigo: <input type="number" id="hp2">
-            CA Inimigo: <input type="number" id="ca2">
-            <label>Arma Inimigo:</label>
+          HP Inimigo: <input type="number" id="hp2" /> CA Inimigo:
+          <input type="number" id="ca2" />
+          <label>Arma Inimigo:</label>
         </div>
+      </div>
+      <div id="baixo">
         <div id="slidervelo" class="slidercontainer">
-            <p id='min'>min.</p>    <p id='max'>máx.</p>            
-            <input type="range" min="0" max="1000" value="500" id="velo" class="slider">
-            <p>Velocidade da Simulação</p>
+          <p id="min">min.</p>
+          <p id="max">máx.</p>
+          <input
+            type="range"
+            min="0"
+            max="1000"
+            value="500"
+            id="velo"
+            class="slider"
+          />
+          <p>Velocidade da Simulação</p>
         </div>
-    </div>
-
-    <div id="baixo">
         <button id="atacar">LUTAR!</button>
         <button id="teste">TESTAR!</button>
-        <div id="res">            
-            
-        </div>   
-       <!-- <select name="selres" id="selres" size="10" multiple="multiple"> -->
-            
-        </select>     
+        <div id="res"></div>
+      </div>
     </div>
-
     <script src="main.js"></script>
-</body>
+  </body>
 </html>
