@@ -53,7 +53,7 @@ function ataque(){
     // ATAQUE
     if(ini1 >= ini2){
         tp = 0
-        while(hp1 > 0 && hp2 > 0){            
+        while(hp1 >= 0 && hp2 >= 0){            
             let atq = (random(1, 21))            
             if(atq >= ca2){
                 if(atq === 20){
@@ -63,8 +63,7 @@ function ataque(){
                         id = createOption()                                                
                         id.selected = true
                         id.innerHTML = `<strong>CRITICO!</strong> Você causou ${dmgtemp} de dano.<br>`                    
-                    }, (tp = tp + velo))
-                    
+                    }, (tp = tp + velo))                    
                 } else{
                     dmg = random(1, (weapon1+1))
                     const dmgtemp = dmg                    
@@ -72,8 +71,7 @@ function ataque(){
                         id = createOption()                        
                         id.selected = true
                         id.innerHTML = `Você causou ${dmgtemp} de dano.<br>`                    
-                    }, (tp = tp + velo))
-                    
+                    }, (tp = tp + velo))                    
                 }                
                 hp2 = hp2 - dmg
             } else{
@@ -81,8 +79,7 @@ function ataque(){
                     id = createOption()                    
                     id.selected = true
                     id.innerHTML = `Você <strong>errou</strong> o ataque!<br>`
-                }, (tp = tp + velo))
-                
+                }, (tp = tp + velo))                
             }               
             //ataque inimigo
             atq = (random(1, 21))            
@@ -93,30 +90,26 @@ function ataque(){
                     setTimeout(() => {
                         id = createOption()                        
                         id.innerHTML = `<strong>CRITICO!</strong> Seu inimgo causou ${dmgtemp} de dano.<br>`                    
-                    }, (tp = tp + velo))
-                    
+                    }, (tp = tp + velo))                    
                 } else{
                     dmg = random(1, (weapon2+1))
                     const dmgtemp = dmg
                     setTimeout(() => {
                         id = createOption()                        
                         id.innerHTML = `Seu inimigo causou ${dmgtemp} de dano.<br>`
-                    }, (tp = tp + velo))
-                    
+                    }, (tp = tp + velo))                    
                 }
                 hp1 = hp1 - dmg
             } else{
                 setTimeout(() => {
                     id = createOption()                    
                     id.innerHTML = `Seu inimigo <strong>errou</strong> o ataque!<br>`
-                }, (tp = tp + velo))
-                
-            }   
+                }, (tp = tp + velo))                
+            }
         }
-        
     } else{
         tp = 0
-        while(hp1 > 0 && hp2 > 0){             
+        while(hp1 >= 0 && hp2 >= 0){             
             atq = (random(1, 21))            
             if(atq >= ca1){                
                 dmg = random(1,weapon2)
@@ -124,15 +117,13 @@ function ataque(){
                 setTimeout(() => {
                     id = createOption()                    
                     id.innerHTML = `Seu inimigo causou ${dmgtemp} de dano.<br>`
-                }, (tp = tp + velo)); 
-                
+                }, (tp = tp + velo));                
                 hp1 = hp1 - dmg
             } else{
                 setTimeout(() => {
                     id = createOption()                    
                     id.innerHTML = `Seu inimigo <strong>errou</strong> o ataque!<br>`
-                }, (tp = tp + velo));
-                
+                }, (tp = tp + velo))                
             } 
             atq = (random(1, 21))            
             if(atq >= ca2){                
@@ -141,33 +132,17 @@ function ataque(){
                 setTimeout(() => {
                     id = createOption()                    
                     id.innerHTML = `Você causou ${dmgtemp} de dano.<br>`
-                }, (tp = tp + velo));
-                
+                }, (tp = tp + velo))
                 hp2 = hp2 - dmg
             } else{
                 setTimeout(() => {
                     id = createOption()                    
                     id.innerHTML = `Você <strong>errou</strong> o ataque!<br>`
-                }, (tp = tp + velo));
-                            
-            }
-        
+                }, (tp = tp + velo))
+            }        
         }
     }
-    if(hp1 > hp2){
-        setTimeout(() => {
-            id = createOption()            
-            id.innerHTML = `<br>Você <strong>MATOU</strong> seu inimigo!`
-        }, (tp = tp + velo))
-        
-    } else{
-        setTimeout(() => {
-            id = createOption()            
-            id.innerHTML = `<br>Você <strong>MORREU</strong> para inimigo!`
-        }, (tp = tp + velo))
-        
-    }
-    
+    checkDead(hp1, hp2)
 }
 
 // gera um valor randominco entre o range escolhido
@@ -180,8 +155,7 @@ const random = (min, max) => {
 function createWeapons(div, id){
     const divmy = document.querySelector(div)
     const selectW = document.createElement('select')
-    selectW.setAttribute('id', id)
-    
+    selectW.setAttribute('id', id)    
     for(let e = 0; e < weapons.length; e++){
         let { arma, dano } = weapons[e]        
         let create = document.createElement('option')
@@ -232,4 +206,18 @@ function stopTimes(){
     while (id--) {
             window.clearTimeout(id)
         }
+}
+
+function checkDead(hp1, hp2){    
+    if(hp1 > hp2 && hp2 <= 0){
+        setTimeout(() => {
+            id = createOption()            
+            id.innerHTML = `<br>Você <strong>MATOU</strong> seu inimigo!`
+        }, (tp = tp + velo))        
+    } else if (hp2 > hp1 && hp1 <= 0){
+        setTimeout(() => {
+            id = createOption()            
+            id.innerHTML = `<br>Você <strong>MORREU</strong> para o seu inimigo!`
+        }, (tp = tp + velo))        
+    }        
 }
