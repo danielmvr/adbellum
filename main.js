@@ -19,14 +19,14 @@ createWeapons('#enemy', 'weapon2')
 
 const atacar = document.querySelector('#atacar')
 atacar.addEventListener('click', function(){
-    ataque()
+    ataque()    
 })
 
-function ataque(){
-    (select === 0) ? select : select.remove()
-    createSelect()    
+function ataque(){    
+    (select === 0) ? select : select.remove()    
+    createSelect()
     idop = 0
-    
+    stopTimes()
     let hp1 = Number(document.querySelector('#hp1').value)
     let ca1 = Number(document.querySelector('#ca1').value)
     let weapon1 = Number(document.querySelector('#weapon1').value)
@@ -60,30 +60,27 @@ function ataque(){
                     dmg = random(1, (weapon1+1)) * 2 
                     const dmgtemp = dmg                   
                     setTimeout(() => {
-                        createOption(idop)                        
-                        let id = document.querySelector(`#op${idop}`)
+                        id = createOption()                                                
                         id.selected = true
-                        id.innerHTML += `<strong>CRITICO!</strong> Você causou ${dmgtemp} de dano.<br>`                    
+                        id.innerHTML = `<strong>CRITICO!</strong> Você causou ${dmgtemp} de dano.<br>`                    
                     }, (tp = tp + velo))
                     
                 } else{
                     dmg = random(1, (weapon1+1))
                     const dmgtemp = dmg                    
                     setTimeout(() => {
-                        createOption(idop)
-                        let id = document.querySelector(`#op${idop}`)
+                        id = createOption()                        
                         id.selected = true
-                        id.innerHTML += `Você causou ${dmgtemp} de dano.<br>`                    
+                        id.innerHTML = `Você causou ${dmgtemp} de dano.<br>`                    
                     }, (tp = tp + velo))
                     
                 }                
                 hp2 = hp2 - dmg
             } else{
                 setTimeout(() => {
-                    createOption(idop)
-                    let id = document.querySelector(`#op${idop}`)
+                    id = createOption()                    
                     id.selected = true
-                    id.innerHTML += `Você <strong>errou</strong> o ataque!<br>`
+                    id.innerHTML = `Você <strong>errou</strong> o ataque!<br>`
                 }, (tp = tp + velo))
                 
             }               
@@ -94,27 +91,24 @@ function ataque(){
                     dmg = random(1, (weapon2+1)) * 2
                     const dmgtemp = dmg
                     setTimeout(() => {
-                        createOption(idop)
-                        let id = document.querySelector(`#op${idop}`)
-                        id.innerHTML += `<strong>CRITICO!</strong> Seu inimgo causou ${dmgtemp} de dano.<br>`                    
+                        id = createOption()                        
+                        id.innerHTML = `<strong>CRITICO!</strong> Seu inimgo causou ${dmgtemp} de dano.<br>`                    
                     }, (tp = tp + velo))
                     
                 } else{
                     dmg = random(1, (weapon2+1))
                     const dmgtemp = dmg
                     setTimeout(() => {
-                        createOption(idop)
-                        let id = document.querySelector(`#op${idop}`)
-                        id.innerHTML += `Seu inimigo causou ${dmgtemp} de dano.<br>`
+                        id = createOption()                        
+                        id.innerHTML = `Seu inimigo causou ${dmgtemp} de dano.<br>`
                     }, (tp = tp + velo))
                     
                 }
                 hp1 = hp1 - dmg
             } else{
                 setTimeout(() => {
-                    createOption(idop)
-                    let id = document.querySelector(`#op${idop}`)
-                    id.innerHTML += `Seu inimigo <strong>errou</strong> o ataque!<br>`
+                    id = createOption()                    
+                    id.innerHTML = `Seu inimigo <strong>errou</strong> o ataque!<br>`
                 }, (tp = tp + velo))
                 
             }   
@@ -128,17 +122,15 @@ function ataque(){
                 dmg = random(1,weapon2)
                 const dmgtemp = dmg
                 setTimeout(() => {
-                    createOption(idop)
-                    let id = document.querySelector(`#op${idop}`)
-                    id.innerHTML += `Seu inimigo causou ${dmgtemp} de dano.<br>`
+                    id = createOption()                    
+                    id.innerHTML = `Seu inimigo causou ${dmgtemp} de dano.<br>`
                 }, (tp = tp + velo)); 
                 
                 hp1 = hp1 - dmg
             } else{
                 setTimeout(() => {
-                    createOption(idop)
-                    let id = document.querySelector(`#op${idop}`)
-                    id.innerHTML += `Seu inimigo <strong>errou</strong> o ataque!<br>`
+                    id = createOption()                    
+                    id.innerHTML = `Seu inimigo <strong>errou</strong> o ataque!<br>`
                 }, (tp = tp + velo));
                 
             } 
@@ -147,17 +139,15 @@ function ataque(){
                 dmg = random(1,weapon1)
                 const dmgtemp = dmg
                 setTimeout(() => {
-                    createOption(idop)
-                    let id = document.querySelector(`#op${idop}`)
-                    id.innerHTML += `Você causou ${dmgtemp} de dano.<br>`
+                    id = createOption()                    
+                    id.innerHTML = `Você causou ${dmgtemp} de dano.<br>`
                 }, (tp = tp + velo));
                 
                 hp2 = hp2 - dmg
             } else{
                 setTimeout(() => {
-                    createOption(idop)
-                    let id = document.querySelector(`#op${idop}`)
-                    id.innerHTML += `Você <strong>errou</strong> o ataque!<br>`
+                    id = createOption()                    
+                    id.innerHTML = `Você <strong>errou</strong> o ataque!<br>`
                 }, (tp = tp + velo));
                             
             }
@@ -166,16 +156,14 @@ function ataque(){
     }
     if(hp1 > hp2){
         setTimeout(() => {
-            createOption(idop)
-            let id = document.querySelector(`#op${idop}`)
-            id.innerHTML += `<br>Você <strong>MATOU</strong> seu inimigo!`
+            id = createOption()            
+            id.innerHTML = `<br>Você <strong>MATOU</strong> seu inimigo!`
         }, (tp = tp + velo))
         
     } else{
         setTimeout(() => {
-            createOption(idop)
-            let id = document.querySelector(`#op${idop}`)
-            id.innerHTML += `<br>Você <strong>MORREU</strong> para inimigo!`
+            id = createOption()            
+            id.innerHTML = `<br>Você <strong>MORREU</strong> para inimigo!`
         }, (tp = tp + velo))
         
     }
@@ -211,7 +199,8 @@ function createOption(){
     opres.id = `op${idop}`
     select.appendChild(opres)
     select.selectedIndex = idop
-    return idop    
+    let id = document.querySelector(`#op${idop}`)
+    return id    
 }
 
 const slider = document.querySelector('.slider')
@@ -221,7 +210,7 @@ slider.addEventListener('change', function(){
 })
 
 const testar = document.querySelector('#teste')
-testar.addEventListener('click', function(){
+testar.addEventListener('click', function(){    
     hp1.value = 20
     ca1.value = 10
     hp2.value = 20
@@ -236,4 +225,11 @@ function createSelect(){
     baixo.appendChild(newselect)
     select = document.querySelector(`#${newselect.id}`)
     selnum++
+}
+
+function stopTimes(){   
+    var id = window.setTimeout(function() {}, 0)
+    while (id--) {
+            window.clearTimeout(id)
+        }
 }

@@ -23,7 +23,8 @@ body {
   margin: auto;
   width: 30rem;
   padding: 1.5rem 0rem 3rem;
-  background: var(--secondaryColor); 
+  background: linear-gradient(329deg, #692020 0%, #692020 100%);
+  box-shadow: 10px 10px 20px #d69c9c1a;
   border-radius: 15px; 
 }
 
