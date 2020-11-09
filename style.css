@@ -105,7 +105,7 @@ button:active {
 }
 
 select {
-  cursor: pointer;
+  cursor: pointer;  
   background-color: var(--primaryColorLight);
   color: white;
   overflow: hidden;
@@ -114,7 +114,6 @@ select {
 }
 
 /*SLIDER*/
-
 /* The slider itself */
 .slider {
   -webkit-appearance: none; /* Override default CSS styles */

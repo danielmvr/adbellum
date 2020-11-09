@@ -5,7 +5,12 @@ let selnum = 0
 let tp = 0
 let velo = 500
 let idop = 0
-let weapons = [
+
+const icons = [
+    {name: 'caveira', url: 'https://i.imgur.com/MhZEUCr.png'}
+]
+
+const weapons = [
     {arma: 'Espada Longa', dano:8},
     {arma: 'Adaga', dano: 4},
     {arma: 'Montante', dano: 10},
@@ -44,41 +49,50 @@ function ataque(){
     let ini2 = random(1, 21)    
         
     const iniciativa = (x, y) => x > y ?
-        idini.innerHTML = `Você começa atacando! ${x} x ${y}<br><br>`        
+        idini.innerHTML = `Você começa atacando! ${x} x ${y}`        
         :    
-        idini.innerHTML = `Seu inimigo começa atacando! ${y} x ${x}<br><br>`
+        idini.innerHTML = `Seu inimigo começa atacando! ${y} x ${x}`
     
     iniciativa(ini1, ini2)
 
     // ATAQUE
     if(ini1 >= ini2){
         tp = 0
-        while(hp1 >= 0 && hp2 >= 0){            
+        while(hp1 > 0 && hp2 > 0){            
             let atq = (random(1, 21))            
             if(atq >= ca2){
                 if(atq === 20){
                     dmg = random(1, (weapon1+1)) * 2 
-                    const dmgtemp = dmg                   
+                    const dmgtemp = dmg
+                    if(hp1 <= 0 || hp2 <= 0){                        
+                        break
+                    }
                     setTimeout(() => {
                         id = createOption()                                                
                         id.selected = true
-                        id.innerHTML = `<strong>CRITICO!</strong> Você causou ${dmgtemp} de dano.<br>`                    
+                        id.innerHTML = `CRITICO! Você causou ${dmgtemp} de dano.`                    
                     }, (tp = tp + velo))                    
                 } else{
                     dmg = random(1, (weapon1+1))
                     const dmgtemp = dmg                    
+                    if(hp1 <= 0 || hp2 <= 0){                        
+                        break
+                    }
                     setTimeout(() => {
                         id = createOption()                        
                         id.selected = true
-                        id.innerHTML = `Você causou ${dmgtemp} de dano.<br>`                    
+                        id.innerHTML = `Você causou ${dmgtemp} de dano.`                    
                     }, (tp = tp + velo))                    
                 }                
-                hp2 = hp2 - dmg
+                hp2 = hp2 - dmg                                
             } else{
+                if(hp1 <= 0 || hp2 <= 0){                    
+                    break
+                }
                 setTimeout(() => {
                     id = createOption()                    
                     id.selected = true
-                    id.innerHTML = `Você <strong>errou</strong> o ataque!<br>`
+                    id.innerHTML = `Você errou o ataque!`
                 }, (tp = tp + velo))                
             }               
             //ataque inimigo
@@ -87,57 +101,78 @@ function ataque(){
                 if(atq === 20){
                     dmg = random(1, (weapon2+1)) * 2
                     const dmgtemp = dmg
+                    if(hp1 <= 0 || hp2 <= 0){                        
+                        break
+                    }
                     setTimeout(() => {
                         id = createOption()                        
-                        id.innerHTML = `<strong>CRITICO!</strong> Seu inimgo causou ${dmgtemp} de dano.<br>`                    
+                        id.innerHTML = `CRITICO! Seu inimgo causou ${dmgtemp} de dano.`                    
                     }, (tp = tp + velo))                    
                 } else{
                     dmg = random(1, (weapon2+1))
                     const dmgtemp = dmg
+                    if(hp1 <= 0 || hp2 <= 0){                        
+                        break
+                    }
                     setTimeout(() => {
                         id = createOption()                        
-                        id.innerHTML = `Seu inimigo causou ${dmgtemp} de dano.<br>`
+                        id.innerHTML = `Seu inimigo causou ${dmgtemp} de dano.`
                     }, (tp = tp + velo))                    
                 }
-                hp1 = hp1 - dmg
+                hp1 = hp1 - dmg                                
             } else{
+                if(hp1 <= 0 || hp2 <= 0){                    
+                    break
+                }
                 setTimeout(() => {
                     id = createOption()                    
-                    id.innerHTML = `Seu inimigo <strong>errou</strong> o ataque!<br>`
+                    id.innerHTML = `Seu inimigo errou o ataque!`
                 }, (tp = tp + velo))                
             }
         }
     } else{
         tp = 0
-        while(hp1 >= 0 && hp2 >= 0){             
+        while(hp1 > 0 && hp2 > 0){             
             atq = (random(1, 21))            
             if(atq >= ca1){                
                 dmg = random(1,weapon2)
                 const dmgtemp = dmg
+                if(hp1 <= 0 || hp2 <= 0){                        
+                    break
+                }
                 setTimeout(() => {
                     id = createOption()                    
-                    id.innerHTML = `Seu inimigo causou ${dmgtemp} de dano.<br>`
+                    id.innerHTML = `Seu inimigo causou ${dmgtemp} de dano.`
                 }, (tp = tp + velo));                
-                hp1 = hp1 - dmg
+                hp1 = hp1 - dmg                                
             } else{
+                if(hp1 <= 0 || hp2 <= 0){                        
+                    break
+                }
                 setTimeout(() => {
                     id = createOption()                    
-                    id.innerHTML = `Seu inimigo <strong>errou</strong> o ataque!<br>`
+                    id.innerHTML = `Seu inimigo errou o ataque!`
                 }, (tp = tp + velo))                
             } 
             atq = (random(1, 21))            
             if(atq >= ca2){                
                 dmg = random(1,weapon1)
                 const dmgtemp = dmg
+                if(hp1 <= 0 || hp2 <= 0){                        
+                    break
+                }
                 setTimeout(() => {
                     id = createOption()                    
-                    id.innerHTML = `Você causou ${dmgtemp} de dano.<br>`
+                    id.innerHTML = `Você causou ${dmgtemp} de dano.`
                 }, (tp = tp + velo))
-                hp2 = hp2 - dmg
+                hp2 = hp2 - dmg                                
             } else{
+                if(hp1 <= 0 || hp2 <= 0){                        
+                    break
+                }
                 setTimeout(() => {
                     id = createOption()                    
-                    id.innerHTML = `Você <strong>errou</strong> o ataque!<br>`
+                    id.innerHTML = `Você errou o ataque!`
                 }, (tp = tp + velo))
             }        
         }
@@ -188,7 +223,7 @@ testar.addEventListener('click', function(){
     hp1.value = 20
     ca1.value = 10
     hp2.value = 20
-    ca2.value = 10
+    ca2.value = 10    
     ataque()
 })
 
@@ -208,16 +243,20 @@ function stopTimes(){
         }
 }
 
-function checkDead(hp1, hp2){    
-    if(hp1 > hp2 && hp2 <= 0){
+function checkDead(hp1, hp2) {
+    if (hp1 > hp2 && hp2 <= 0) {
         setTimeout(() => {
-            id = createOption()            
-            id.innerHTML = `<br>Você <strong>MATOU</strong> seu inimigo!`
-        }, (tp = tp + velo))        
-    } else if (hp2 > hp1 && hp1 <= 0){
+            id = createOption()
+            id.style.background = `url(${icons[0].url}) no-repeat center`            
+            id = createOption()
+            id.innerHTML = `Você MATOU seu inimigo!`
+        }, (tp = tp + velo))
+    } else if (hp2 > hp1 && hp1 <= 0) {
         setTimeout(() => {
-            id = createOption()            
-            id.innerHTML = `<br>Você <strong>MORREU</strong> para o seu inimigo!`
-        }, (tp = tp + velo))        
-    }        
+            id = createOption()
+            id.style.background = `url(${icons[0].url}) no-repeat center`
+            id = createOption()
+            id.innerHTML = `Você MORREU para o seu inimigo!`
+        }, (tp = tp + velo))
+    }
 }
