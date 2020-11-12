@@ -78,9 +78,9 @@ p#max {
   margin: -1rem 15.2rem;
 }
 
-button {
+button {  
   font-family: 'MedievalSharp', cursive;
-  border: none;
+  border: 0;
   font-size: 14px;
   font-weight: 600;
   height: 2rem;
@@ -89,14 +89,18 @@ button {
   background: var(--primaryColorDark);
   color: #ffffff;
   border-radius: 10px;
+  outline: 0px;
+  transition: 0.5s; 
 }
 
 button:hover {
   background: var(--primaryColorLight);
+  border: none;  
 }
 
 button:active {
   background: var(--primaryColor);
+  border: none;
 }
 
 #baixo {
