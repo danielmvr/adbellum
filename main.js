@@ -1,5 +1,6 @@
 let res = document.querySelector('#res')
 const baixo = document.querySelector('#baixo')
+const entradas = document.querySelector('#entradas')
 let select = 0
 let selnum = 0
 let tp = 0
@@ -188,7 +189,7 @@ const random = (min, max) => {
 
 // cria os selects das armas
 function createWeapons(div, id){
-    const divmy = document.querySelector(div)
+    const divWep = document.querySelector(div)
     const selectW = document.createElement('select')
     selectW.setAttribute('id', id)    
     for(let e = 0; e < weapons.length; e++){
@@ -199,7 +200,7 @@ function createWeapons(div, id){
             create.innerText = arma
             selectW.appendChild(create)
         }
-        divmy.appendChild(selectW)
+        divWep.appendChild(selectW)
 }
 
 function createOption(){
@@ -213,13 +214,13 @@ function createOption(){
 }
 
 const slider = document.querySelector('.slider')
-slider.addEventListener('change', function(){    
+slider.addEventListener('change', () => {    
     velo = Number(document.querySelector('#velo').value)
     velo = (velo - 1000) * (-1)    
 })
 
 const testar = document.querySelector('#teste')
-testar.addEventListener('click', function(){    
+testar.addEventListener('click', () => {    
     hp1.value = 20
     ca1.value = 10
     hp2.value = 20
@@ -258,5 +259,48 @@ function checkDead(hp1, hp2) {
             id = createOption()
             id.innerHTML = `Você MORREU para o seu inimigo!`
         }, (tp = tp + velo))
+    }
+}
+
+const adv = document.querySelector('#advanced')
+adv.addEventListener('click', () => {
+    createAdv('my', 'afterbegin')
+    createAdv('enemy', 'beforeend')
+})
+
+const simp = document.querySelector('#simple')
+simp.addEventListener('click', () => {
+    if(entradas.childElementCount === 4){
+        myAdv.remove()
+        enemyAdv.remove()
+    }
+})
+
+function createAdv(i, local) {
+    if(entradas.childElementCount < 4){
+        const divAdv = document.createElement(`div`)
+        divAdv.id = `${i}Adv`
+        entradas.insertAdjacentElement(`${local}`, divAdv)    
+        
+        const inpIni = document.createElement('input')
+        const labIni = document.createElement('label')
+        labIni.innerText = "Bonus Iniciativa"
+        inpIni.id = `bonusinit${i}`
+        divAdv.appendChild(labIni)
+        divAdv.appendChild(inpIni)
+    
+        const inpAtq = document.createElement('input')
+        const labAtq = document.createElement('label')
+        labAtq.innerText = "Bonus Ataque"
+        inpAtq.id = `bonusatq${i}`
+        divAdv.appendChild(labAtq)
+        divAdv.appendChild(inpAtq)
+    
+        const inpDmg = document.createElement('input')
+        const labDmg = document.createElement('label')
+        labDmg.innerText = "Bonus Dano"
+        inpDmg.id = `bonusDmg${i}`
+        divAdv.appendChild(labDmg)
+        divAdv.appendChild(inpDmg)
     }
 }
