@@ -1,6 +1,12 @@
 let res = document.querySelector('#res')
 const baixo = document.querySelector('#baixo')
 const entradas = document.querySelector('#entradas')
+let bninit1 = 0    
+let bnatq1 = 0
+let bndmg1 = 0
+let bninit2 = 0
+let bnatq2 = 0
+let bndmg2 = 0
 let select = 0
 let selnum = 0
 let tp = 0
@@ -35,19 +41,27 @@ function ataque(){
     stopTimes()
     let hp1 = Number(document.querySelector('#hp1').value)
     let ca1 = Number(document.querySelector('#ca1').value)
-    let weapon1 = Number(document.querySelector('#weapon1').value)
+    let weapon1 = Number(document.querySelector('#weapon1').value)        
     let hp2 = Number(document.querySelector('#hp2').value)
     let ca2 = Number(document.querySelector('#ca2').value)
     let weapon2 = Number(document.querySelector('#weapon2').value)
-
+    if(entradas.childElementCount > 2) {
+        bninit1 = Number(document.querySelector('#bninitmy').value)
+        bnatq1 = Number(document.querySelector('#bnatqmy').value)
+        bndmg1 = Number(document.querySelector('#bndmgmy').value)
+        bninit2 = Number(document.querySelector('#bninitenemy').value)
+        bnatq2 = Number(document.querySelector('#bnatqenemy').value)
+        bndmg2 = Number(document.querySelector('#bndmgenemy').value)
+    }
+    
     let idini = document.createElement('option')
     idini.id = 'op0'
     select.appendChild(idini)
     idini = document.querySelector(`#op0`)
        
     // INICIATIVA    
-    let ini1 = random(1, 21)
-    let ini2 = random(1, 21)    
+    let ini1 = random(1, 21) + bninit1    
+    let ini2 = random(1, 21) + bninit2
         
     const iniciativa = (x, y) => x > y ?
         idini.innerHTML = `Você começa atacando! ${x} x ${y}`        
@@ -265,7 +279,7 @@ function checkDead(hp1, hp2) {
 const adv = document.querySelector('#advanced')
 adv.addEventListener('click', () => {
     createAdv('my', 'afterbegin')
-    createAdv('enemy', 'beforeend')
+    createAdv('enemy', 'beforeend')       
 })
 
 const simp = document.querySelector('#simple')
@@ -273,11 +287,18 @@ simp.addEventListener('click', () => {
     if(entradas.childElementCount === 4){
         myAdv.remove()
         enemyAdv.remove()
+        bninit1 = 0    
+        bnatq1 = 0
+        bndmg1 = 0
+        bninit2 = 0
+        bnatq2 = 0
+        bndmg2 = 0
     }
 })
 
 function createAdv(i, local) {
     if(entradas.childElementCount < 4){
+        // TRANSFORMAR EM FOR!!!
         const divAdv = document.createElement(`div`)
         divAdv.id = `${i}Adv`
         entradas.insertAdjacentElement(`${local}`, divAdv)    
@@ -285,21 +306,21 @@ function createAdv(i, local) {
         const inpIni = document.createElement('input')
         const labIni = document.createElement('label')
         labIni.innerText = "Bonus Iniciativa"
-        inpIni.id = `bonusinit${i}`
+        inpIni.id = `bninit${i}`
         divAdv.appendChild(labIni)
         divAdv.appendChild(inpIni)
     
         const inpAtq = document.createElement('input')
         const labAtq = document.createElement('label')
         labAtq.innerText = "Bonus Ataque"
-        inpAtq.id = `bonusatq${i}`
+        inpAtq.id = `bnatq${i}`
         divAdv.appendChild(labAtq)
         divAdv.appendChild(inpAtq)
     
         const inpDmg = document.createElement('input')
         const labDmg = document.createElement('label')
         labDmg.innerText = "Bonus Dano"
-        inpDmg.id = `bonusDmg${i}`
+        inpDmg.id = `bndmg${i}`
         divAdv.appendChild(labDmg)
         divAdv.appendChild(inpDmg)
     }

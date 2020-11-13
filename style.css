@@ -69,6 +69,7 @@ div {
   display: flex;  
   padding: auto;
   margin: auto;
+  
 }
 
 p {
@@ -112,8 +113,9 @@ button:active {
 }
 
 #baixo {
-  display: inline-block;
-  margin: -2rem auto;
+  padding: auto;
+  margin: auto;
+  
 }
 
 select {
