@@ -12,7 +12,7 @@
 body {
   background: var(--secondaryColorDark);
   color: white;
-  /*font-family: Verdana, Geneva, Tahoma, sans-serif;*/
+  text-align: center;
   font-family: 'MedievalSharp', cursive;
   font-size: 14px;   
 }

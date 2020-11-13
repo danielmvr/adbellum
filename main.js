@@ -24,7 +24,8 @@ const weapons = [
     {arma: 'Montante', dano: 10},
     {arma: 'Machado', dano: 12},
     {arma: 'Martelo', dano: 10},
-    {arma: 'Espada Curta', dano: 6}
+    {arma: 'Espada Curta', dano: 6},
+    {arma: 'Soco', dano: 1},
 ]
 
 createWeapons('#my', 'weapon1')
@@ -80,7 +81,7 @@ function ataque(){
             console.log(`Minha rolagem atq`, atq)            
             if(atq === 20){                
                 dmg = random(1, (weapon1+1)) * 2 
-                const dmgtemp = dmg
+                const dmgtemp = dmg + (bndmg1*2)
                 if(hp1 <= 0 || hp2 <= 0){                        
                     break
                 }
@@ -92,7 +93,7 @@ function ataque(){
                 hp2 = hp2 - dmg                
             } else if ((atq+bnatq1) >= ca2) {
                 dmg = random(1, (weapon1 + 1))
-                const dmgtemp = dmg
+                const dmgtemp = dmg + bndmg1
                 if (hp1 <= 0 || hp2 <= 0) {
                     break
                 }
@@ -117,7 +118,7 @@ function ataque(){
             console.log(`Rolagem inmigo atq`, atq)
             if(atq === 20){
                 dmg = random(1, (weapon2+1)) * 2
-                const dmgtemp = dmg
+                const dmgtemp = dmg + (bndmg2*2)
                 if(hp1 <= 0 || hp2 <= 0){                        
                     break
                 }
@@ -129,7 +130,7 @@ function ataque(){
                 atq = atq + bnatq2
             }else if (atq+bnatq2 >= ca1) {
                 dmg = random(1, (weapon2 + 1))
-                const dmgtemp = dmg
+                const dmgtemp = dmg + bndmg2
                 if (hp1 <= 0 || hp2 <= 0) {
                     break
                 }
@@ -155,7 +156,7 @@ function ataque(){
             console.log(`Rolagem inmigo atq`, atq)
             if(atq === 20){
                 dmg = random(1, (weapon2+1)) * 2
-                const dmgtemp = dmg
+                const dmgtemp = dmg + (bndmg2 *2)
                 if(hp1 <= 0 || hp2 <= 0){                        
                     break
                 }
@@ -167,7 +168,7 @@ function ataque(){
                 atq = atq + bnatq2
             } else if(atq+bnatq2 >= ca1){                
                 dmg = random(1,weapon2)
-                const dmgtemp = dmg
+                const dmgtemp = dmg + bndmg2
                 if(hp1 <= 0 || hp2 <= 0){                        
                     break
                 }
@@ -189,7 +190,7 @@ function ataque(){
             console.log(`Minha rolagem atq`, atq)
             if(atq === 20){                
                 dmg = random(1, (weapon1+1)) * 2 
-                const dmgtemp = dmg
+                const dmgtemp = dmg + (bndmg1*2)
                 if(hp1 <= 0 || hp2 <= 0){                        
                     break
                 }
@@ -202,7 +203,7 @@ function ataque(){
                 atq = atq + bnatq1
             }else if(atq+bnatq1 >= ca2){                
                 dmg = random(1,weapon1)
-                const dmgtemp = dmg
+                const dmgtemp = dmg + bndmg1
                 if(hp1 <= 0 || hp2 <= 0){                        
                     break
                 }
@@ -227,7 +228,8 @@ function ataque(){
 
 // gera um valor randominco entre o range escolhido
 const random = (min, max) => {
-    const r = Math.random() * (min - max) + max    
+    const r = Math.random() * (min - max) + max
+    console.log(Math.floor(r))
     return Math.floor(r)    
 }
 
@@ -268,7 +270,15 @@ testar.addEventListener('click', () => {
     hp1.value = 20
     ca1.value = 10
     hp2.value = 20
-    ca2.value = 10    
+    ca2.value = 10
+    if(entradas.childElementCount > 2) {
+        document.input = bninitmy.value = 2
+        document.input = bnatqmy.value = 2
+        document.input = bndmgmy.value = 2
+        document.input = bninitenemy.value = 2
+        document.input = bnatqenemy.value = 2
+        document.input = bndmgenemy.value = 2
+    }
     ataque()
 })
 
