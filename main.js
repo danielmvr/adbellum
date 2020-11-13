@@ -10,7 +10,7 @@ let bndmg2 = 0
 let select = 0
 let selnum = 0
 let tp = 0
-let velo = 500
+let velo = 50
 let idop = 0
 
 const icons = [
@@ -34,9 +34,10 @@ atacar.addEventListener('click', function(){
     ataque()    
 })
 
-function ataque(){    
+function ataque(){      
     (select === 0) ? select : select.remove()    
-    createSelect()
+    controlSword('play')
+    createSelect()    
     idop = 0
     stopTimes()
     let hp1 = Number(document.querySelector('#hp1').value)
@@ -230,7 +231,7 @@ function createOption(){
 const slider = document.querySelector('.slider')
 slider.addEventListener('change', () => {    
     velo = Number(document.querySelector('#velo').value)
-    velo = (velo - 1000) * (-1)    
+    velo = (velo - 1000) * (-1)        
 })
 
 const testar = document.querySelector('#teste')
@@ -258,13 +259,14 @@ function stopTimes(){
         }
 }
 
-function checkDead(hp1, hp2) {
+function checkDead(hp1, hp2) {    
     if (hp1 > hp2 && hp2 <= 0) {
         setTimeout(() => {
             id = createOption()
             id.style.background = `url(${icons[0].url}) no-repeat center`            
             id = createOption()
             id.innerHTML = `Você MATOU seu inimigo!`
+            controlSword('stop')
         }, (tp = tp + velo))
     } else if (hp2 > hp1 && hp1 <= 0) {
         setTimeout(() => {
@@ -272,8 +274,9 @@ function checkDead(hp1, hp2) {
             id.style.background = `url(${icons[0].url}) no-repeat center`
             id = createOption()
             id.innerHTML = `Você MORREU para o seu inimigo!`
+            controlSword('stop')
         }, (tp = tp + velo))
-    }
+    }    
 }
 
 const adv = document.querySelector('#advanced')
@@ -323,5 +326,15 @@ function createAdv(i, local) {
         inpDmg.id = `bndmg${i}`
         divAdv.appendChild(labDmg)
         divAdv.appendChild(inpDmg)
+    }
+}
+
+function controlSword(action) {
+    const play = document.querySelector('#tapSword')
+    if(action === 'play'){
+        play.play()        
+    } else if(action === 'stop'){
+        play.pause()
+        play.currentTime = 0
     }
 }

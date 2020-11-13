@@ -10,8 +10,10 @@
     <h1 id="h1">Ad Bellum</h1>
     <div id="container">
       <div id='modelo'>
-        Simplificado<input type="radio" name="modelo" id="simple">
-        Avançado<input type="radio" name="modelo" id="advanced">
+        <input type="radio" name="modelo" id="simple" checked>
+        Simplificado
+        <input type="radio" name="modelo" id="advanced">
+        Avançado
       </div>      
       <div id="entradas">
         <div id="my">
@@ -33,12 +35,13 @@
             type="range"
             min="0"
             max="1000"
-            value="500"
+            value="950"
             id="velo"
             class="slider"
           />
           <p>Velocidade da Simulação</p>
-        </div>
+          <video src="iconwebm.webm" type="video/webm" loop width="50px" height="50px" id="tapSword"></video>
+        </div>        
         <button id="atacar">LUTAR</button>
         <button id="teste">TESTAR</button>
         <div id="res"></div>
