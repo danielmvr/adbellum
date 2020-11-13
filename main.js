@@ -77,7 +77,7 @@ function ataque(){
         tp = 0
         while(hp1 > 0 && hp2 > 0){            
             atq = (random(1, 21))
-            console.log(`Minha rolagem atq`, atq)
+            console.log(`Minha rolagem atq`, atq)            
             if(atq === 20){                
                 dmg = random(1, (weapon1+1)) * 2 
                 const dmgtemp = dmg
@@ -89,8 +89,8 @@ function ataque(){
                     id.selected = true
                     id.innerHTML = `CRITICO! Você causou ${dmgtemp} de dano.`                    
                 }, (tp = tp + velo))
-                hp2 = hp2 - dmg
-            } else if (atq >= ca2) {
+                hp2 = hp2 - dmg                
+            } else if ((atq+bnatq1) >= ca2) {
                 dmg = random(1, (weapon1 + 1))
                 const dmgtemp = dmg
                 if (hp1 <= 0 || hp2 <= 0) {
@@ -126,7 +126,8 @@ function ataque(){
                     id.innerHTML = `CRITICO! Seu inimigo causou ${dmgtemp} de dano.`
                 }, (tp = tp + velo))
                 hp1 = hp1 - dmg
-            }else if (atq >= ca1) {
+                atq = atq + bnatq2
+            }else if (atq+bnatq2 >= ca1) {
                 dmg = random(1, (weapon2 + 1))
                 const dmgtemp = dmg
                 if (hp1 <= 0 || hp2 <= 0) {
@@ -152,7 +153,19 @@ function ataque(){
         while(hp1 > 0 && hp2 > 0){             
             atq = (random(1, 21))
             console.log(`Rolagem inmigo atq`, atq)
-            if(atq >= ca1){                
+            if(atq === 20){
+                dmg = random(1, (weapon2+1)) * 2
+                const dmgtemp = dmg
+                if(hp1 <= 0 || hp2 <= 0){                        
+                    break
+                }
+                setTimeout(() => {
+                    id = createOption()                        
+                    id.innerHTML = `CRITICO! Seu inimigo causou ${dmgtemp} de dano.`
+                }, (tp = tp + velo))
+                hp1 = hp1 - dmg
+                atq = atq + bnatq2
+            } else if(atq+bnatq2 >= ca1){                
                 dmg = random(1,weapon2)
                 const dmgtemp = dmg
                 if(hp1 <= 0 || hp2 <= 0){                        
@@ -174,7 +187,20 @@ function ataque(){
             } 
             atq = (random(1, 21))
             console.log(`Minha rolagem atq`, atq)
-            if(atq >= ca2){                
+            if(atq === 20){                
+                dmg = random(1, (weapon1+1)) * 2 
+                const dmgtemp = dmg
+                if(hp1 <= 0 || hp2 <= 0){                        
+                    break
+                }
+                setTimeout(() => {
+                    id = createOption()                                                
+                    id.selected = true
+                    id.innerHTML = `CRITICO! Você causou ${dmgtemp} de dano.`                    
+                }, (tp = tp + velo))
+                hp2 = hp2 - dmg
+                atq = atq + bnatq1
+            }else if(atq+bnatq1 >= ca2){                
                 dmg = random(1,weapon1)
                 const dmgtemp = dmg
                 if(hp1 <= 0 || hp2 <= 0){                        
@@ -201,8 +227,7 @@ function ataque(){
 
 // gera um valor randominco entre o range escolhido
 const random = (min, max) => {
-    const r = Math.random() * (min - max) + max
-    console.log(Math.floor(r))
+    const r = Math.random() * (min - max) + max    
     return Math.floor(r)    
 }
 
