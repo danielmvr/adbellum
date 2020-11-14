@@ -347,21 +347,21 @@ function createAdv(i, local) {
         
         const inpIni = document.createElement('input')
         const labIni = document.createElement('label')
-        labIni.innerText = "Bonus Iniciativa"
+        labIni.innerText = "Bônus Iniciativa"
         inpIni.id = `bninit${i}`
         divAdv.appendChild(labIni)
         divAdv.appendChild(inpIni)
     
         const inpAtq = document.createElement('input')
         const labAtq = document.createElement('label')
-        labAtq.innerText = "Bonus Ataque"
+        labAtq.innerText = "Bônus Ataque"
         inpAtq.id = `bnatq${i}`
         divAdv.appendChild(labAtq)
         divAdv.appendChild(inpAtq)
     
         const inpDmg = document.createElement('input')
         const labDmg = document.createElement('label')
-        labDmg.innerText = "Bonus Dano"
+        labDmg.innerText = "Bônus Dano"
         inpDmg.id = `bndmg${i}`
         divAdv.appendChild(labDmg)
         divAdv.appendChild(inpDmg)
